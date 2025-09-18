@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import Counter from "./Count";
 
 function App() {
-  const [count, setCount] = useState(0)
+  function eventHandler() {
+    alert("Hello world. I am Jahid.");
+  }
+
+  const eventHandler2 = () => {
+    alert("Hello world. I am Rijon.");
+  };
+
+  const addNumber5 = (num) => {
+    const newNumber = num + 5;
+    alert(newNumber);
+  };
+
+  const abstact10 = (abstact) => {
+    const newAbstructNumber = abstact - 10;
+    alert(newAbstructNumber);
+  };
+
+  const btnStyle = {
+    marginLeft: "20px",
+  };
+
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
+
       <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      <Counter></Counter>
+
+
+      <button className="btn" onClick={eventHandler}>
+        CLICK ME
+      </button>
+
+      <button className="btn" style={btnStyle} onClick={eventHandler2}>
+        CLICK ME 2
+      </button>
+
+      <button className="btn" style={btnStyle} onClick={() => addNumber5(5)}>
+        CLICK ME 2
+      </button>
+
+      <button className="btn" style={btnStyle} onClick={() => abstact10(50)}>
+        CLICK ME 2
+      </button>
+
     </>
-  )
+  );
 }
 
-export default App
+export default App;
