@@ -1,5 +1,6 @@
 import "./App.css";
 import Counter from "./Count";
+import Batsman from "./Batsman";
 
 function App() {
   function eventHandler() {
@@ -29,6 +30,8 @@ function App() {
     <>
 
       <h1>Vite + React</h1>
+
+      <Batsman></Batsman>
 
       <Counter></Counter>
 
