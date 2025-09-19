@@ -4,8 +4,22 @@ import Batsman from "./Batsman";
 import Visible from "./Visible";
 import LightAndDarkMode from "./LightAndDarkMode";
 import LikeAndDislike from "./LikeAneDislike";
+import Users from "./Users";
+import Friends from "./Friends";
+import { Suspense } from "react";
+
+const fetchUsers = fetch(`https://jsonplaceholder.typicode.com/users`).then(
+  (res) => res.json()
+);
+
+const fetchFriends = async () => {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/users`);
+  return res.json();
+};
 
 function App() {
+  const friendPromise = fetchFriends();
+
   function eventHandler() {
     alert("Hello world. I am Jahid.");
   }
@@ -28,11 +42,17 @@ function App() {
     marginLeft: "20px",
   };
 
-
   return (
     <>
-
       <h1>Vite + React</h1>
+
+      <Suspense fallback={<h3>Friends are comming for treet</h3>}>
+        <Friends friendPromise={friendPromise}></Friends>
+      </Suspense>
+
+      <Suspense fallback={<h3>Just a sec</h3>}>
+        <Users fetchUsers={fetchUsers}></Users>
+      </Suspense>
 
       <LikeAndDislike></LikeAndDislike>
 
@@ -43,7 +63,6 @@ function App() {
       <Batsman></Batsman>
 
       <Counter></Counter>
-
 
       <button className="btn" onClick={eventHandler}>
         CLICK ME
@@ -60,7 +79,6 @@ function App() {
       <button className="btn" style={btnStyle} onClick={() => abstact10(50)}>
         CLICK ME 2
       </button>
-
     </>
   );
 }
